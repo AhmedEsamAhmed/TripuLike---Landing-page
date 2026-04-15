@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { Reveal } from '../components/Reveal'
+import decorationImage from '../../assets/decoration pic - tripulike.jpg'
+import tripulikeLogo from '../../assets/logo (2).png'
 
 type HeroSectionProps = {
   onHome: () => void
@@ -9,14 +11,14 @@ type HeroSectionProps = {
   onJoinWaitlist: () => void
 }
 
-export function HeroSection({ onHome, onTryDemo, onHowItWorks, onOurValue, onJoinWaitlist }: HeroSectionProps) {
+export function HeroSection({ onHome, onTryDemo, onJoinWaitlist }: HeroSectionProps) {
   const [showContact, setShowContact] = useState(false)
   const backgroundIcons = [
     { icon: '✈️', className: 'left-5 top-24 animate-[tripuDrift_8s_ease-in-out_infinite]', toneClass: 'text-white/26' },
     { icon: '📍', className: 'left-12 bottom-20 animate-[tripuDrift_9s_ease-in-out_infinite]', toneClass: 'text-orange-100/35' },
     { icon: '📷', className: 'left-1/2 top-24 animate-[tripuDrift_8.5s_ease-in-out_infinite]', toneClass: 'text-cyan-100/30' },
-    { icon: '🧭', className: 'right-10 top-32 animate-[tripuDrift_8s_ease-in-out_infinite]', toneClass: 'text-white/24' },
-    { icon: '🧳', className: 'right-8 bottom-24 animate-[tripuDrift_8.8s_ease-in-out_infinite]', toneClass: 'text-orange-100/35' },
+    { icon: '🧭', className: 'right-10 top-28 animate-[tripuDrift_8s_ease-in-out_infinite]', toneClass: 'text-white/24' },
+    { icon: '🧳', className: 'right-12 bottom-28 animate-[tripuDrift_8.8s_ease-in-out_infinite]', toneClass: 'text-orange-100/35' },
     { icon: '🌊', className: 'right-1/3 bottom-12 animate-[tripuDrift_9.2s_ease-in-out_infinite]', toneClass: 'text-cyan-100/32' },
     { icon: '➜', className: 'right-24 top-1/2 animate-[tripuDrift_7.6s_ease-in-out_infinite]', toneClass: 'text-white/24' },
     { icon: '⌁', className: 'left-1/3 bottom-28 animate-[tripuDrift_8.4s_ease-in-out_infinite]', toneClass: 'text-orange-100/30' },
@@ -38,6 +40,7 @@ export function HeroSection({ onHome, onTryDemo, onHowItWorks, onOurValue, onJoi
       <div className="tripu-dots pointer-events-none absolute bottom-14 right-8 -z-10 h-32 w-32 opacity-30" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-36 bg-gradient-to-t from-black/10 to-transparent" />
       <div className="pointer-events-none absolute left-6 top-36 hidden h-44 w-px bg-gradient-to-b from-white/75 via-white/30 to-transparent md:block" />
+      <div className="pointer-events-none absolute right-0 top-0 -z-10 h-56 w-56 rounded-full bg-white/5 blur-3xl" />
 
       {backgroundIcons.map((item) => (
         <span
@@ -51,29 +54,21 @@ export function HeroSection({ onHome, onTryDemo, onHowItWorks, onOurValue, onJoi
 
       <div className="mx-auto w-full max-w-7xl px-4 pb-16 pt-8 md:px-8 md:pb-24 md:pt-10">
         <Reveal>
-          <header className="flex flex-wrap items-start justify-between gap-6">
-            <button type="button" onClick={onHome} className="text-left">
-              <div className="text-3xl font-extrabold leading-none md:text-[2.35rem]">
-                <span className="text-white">Trip</span>
-                <span className="text-[#ff9100]">u</span>
-                <span className="text-white">Like</span>
-              </div>
+          <header className="flex items-start">
+            <button type="button" onClick={onHome} className="flex w-fit flex-col items-start text-left">
+              <img
+                src={tripulikeLogo}
+                alt="TripuLike"
+                className="h-16 w-auto drop-shadow-[0_4px_16px_rgba(2,35,72,0.2)] md:h-20"
+              />
               <p className="mt-1 text-[0.62rem] font-medium uppercase tracking-[0.22em] text-white/85 md:text-[0.68rem]">
                 Travel Experience Platform
               </p>
             </button>
-
-            <nav className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-medium text-white/85 md:text-[0.95rem]" aria-label="Primary">
-              <button type="button" onClick={onHome} className="tripu-nav-link">Home</button>
-              <button type="button" onClick={onTryDemo} className="tripu-nav-link">Demo</button>
-              <button type="button" onClick={onOurValue} className="tripu-nav-link">Our Value</button>
-              <button type="button" onClick={onHowItWorks} className="tripu-nav-link">How It Works</button>
-              <button type="button" onClick={() => setShowContact((prev) => !prev)} className="tripu-nav-link">Contact</button>
-            </nav>
           </header>
         </Reveal>
 
-        <div className="mt-14 max-w-4xl md:mt-20">
+        <div className="mt-12 grid gap-10 lg:mt-14 lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)] lg:items-start lg:gap-12">
           <Reveal>
             <div className="relative pl-0 md:pl-8">
               <h1 className="hero-hook max-w-4xl text-left leading-none text-white">
@@ -148,12 +143,39 @@ export function HeroSection({ onHome, onTryDemo, onHowItWorks, onOurValue, onJoi
               )}
             </div>
           </Reveal>
-        </div>
 
-        <div className="pointer-events-none mt-8 flex items-center gap-3 text-white/55 md:mt-12">
-          <span className="h-px w-10 bg-white/45" />
-          <span className="text-xs uppercase tracking-[0.26em]">Explore more</span>
-          <span className="text-sm">➜</span>
+          <Reveal>
+            <div className="relative pt-2 lg:pt-4">
+              <div className="mb-5 flex justify-end lg:pr-5">
+                <div className="tripu-coming-soon-text w-full max-w-[420px] text-center">
+                  <span className="block text-[clamp(2.5rem,5.2vw,4.95rem)] leading-[0.92] text-white">
+                    COMING
+                  </span>
+                  <span className="mt-1 block text-[clamp(2.8rem,5.8vw,5.35rem)] leading-[0.9] text-white">
+                    SOON
+                  </span>
+                </div>
+              </div>
+
+              <div className="relative ml-auto w-full max-w-[480px] overflow-hidden rounded-[1.45rem] border border-white/18 bg-white/10 p-3 shadow-[0_30px_90px_rgba(2,35,72,0.35)] backdrop-blur-sm transition duration-500 hover:-translate-y-1 lg:rotate-[-3deg]">
+                <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.08),transparent_35%,rgba(255,145,0,0.12))]" />
+                <img
+                  src={decorationImage}
+                  alt="Travel flat lay with camera, passport, map, and accessories"
+                  className="relative h-[260px] w-full rounded-[1.1rem] object-cover object-center shadow-lg sm:h-[300px] lg:h-[340px]"
+                />
+
+                <div className="relative mt-3 flex flex-wrap items-center justify-between gap-3 px-1 pb-1">
+                  <div className="flex items-center gap-2 text-white/92">
+                    <span className="rounded-full bg-white/15 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.16em] backdrop-blur-sm">
+                      LAUNCH TEASER
+                    </span>
+                  </div>
+                  <span className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-orange-200">TRIPULIKE</span>
+                </div>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>

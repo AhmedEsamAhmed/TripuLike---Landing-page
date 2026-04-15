@@ -1,0 +1,15 @@
+<svg width="360" height="96" viewBox="0 0 360 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="shadow" x="0" y="0" width="360" height="96" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="1" stdDeviation="1.5" flood-color="#023f67" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+  <g filter="url(#shadow)">
+    <text x="0" y="69" fill="#FFFFFF" font-family="Plus Jakarta Sans, Chivo, Arial, sans-serif" font-size="63" font-weight="800" letter-spacing="-2">Trip</text>
+    <text x="168" y="69" fill="#FFFFFF" font-family="Plus Jakarta Sans, Chivo, Arial, sans-serif" font-size="63" font-weight="800" letter-spacing="-2">Like</text>
+    <path d="M126 39C126 35.134 129.134 32 133 32C136.866 32 140 35.134 140 39" stroke="#FF9100" stroke-width="7" stroke-linecap="round"/>
+    <path d="M140 39C140 35.134 143.134 32 147 32C150.866 32 154 35.134 154 39" stroke="#FF9100" stroke-width="7" stroke-linecap="round"/>
+    <path d="M113 49C117.2 60.1 127.4 66 140 66C152.6 66 162.8 60.1 167 49" stroke="#FF9100" stroke-width="11" stroke-linecap="round"/>
+    <path d="M120 51C123.2 58.1 130.5 62 140 62C149.5 62 156.8 58.1 160 51" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round"/>
+  </g>
+</svg>
