@@ -57,6 +57,21 @@ h4 {
   will-change: transform;
 }
 
+.tripu-hero-strip {
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.82) 8%, rgba(0, 0, 0, 0.82) 92%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.82) 8%, rgba(0, 0, 0, 0.82) 92%, transparent 100%);
+}
+
+.tripu-hero-strip-track {
+  will-change: transform;
+}
+
+.tripu-hero-strip-item {
+  flex: 0 0 auto;
+  opacity: 0.66;
+  filter: saturate(0.88) brightness(1.02);
+}
+
 .tripu-coming-soon-line {
   position: relative;
   display: block;
@@ -184,6 +199,66 @@ h4 {
   }
 }
 
+@keyframes tripuHeroStripDrift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes tripuGraphDrift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scaleX(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translate3d(0, -4px, 0) scaleX(1.02);
+    opacity: 1;
+  }
+}
+
+@keyframes tripuGraphPulse {
+  0%,
+  100% {
+    transform: scaleY(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scaleY(1.08);
+    opacity: 1;
+  }
+}
+
+@keyframes tripuValidationPulse {
+  0% {
+    transform: scale(0.84);
+    opacity: 0.2;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.75;
+  }
+  100% {
+    transform: scale(1.18);
+    opacity: 0;
+  }
+}
+
+@keyframes tripuBurstFloat {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.75;
+  }
+  50% {
+    transform: translateY(-4px) scale(1.05);
+    opacity: 1;
+  }
+}
+
 @keyframes tripuComingSoonFloat3d {
   0%,
   100% {
@@ -217,6 +292,22 @@ h4 {
 @media (max-width: 767px) {
   .tripu-coming-soon-text {
     animation-duration: 6.8s;
+  }
+
+  .tripu-hero-strip {
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.72) 10%, rgba(0, 0, 0, 0.72) 90%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.72) 10%, rgba(0, 0, 0, 0.72) 90%, transparent 100%);
+  }
+
+  .tripu-hero-strip-item {
+    opacity: 0.56;
+  }
+
+  .tripu-coming-soon-line {
+    text-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.34),
+      0 3px 0 rgba(5, 66, 108, 0.28),
+      0 9px 16px rgba(3, 24, 50, 0.2);
   }
 
   .tripu-coming-soon-line {
