@@ -1,3 +1,5 @@
+import { useRef } from 'react'
+import type { WheelEvent } from 'react'
 import { Reveal } from '../components/Reveal'
 import { SectionTitle } from '../components/SectionTitle'
 
@@ -47,88 +49,134 @@ const valueItems = [
   },
 ]
 
+type PairedSlide = {
+  problem: (typeof problems)[number]
+  value: (typeof valueItems)[number]
+}
+
 export function HeroValueSection() {
+  const railRef = useRef<HTMLDivElement | null>(null)
+
+  const slides: PairedSlide[] = [
+    { problem: problems[0], value: valueItems[3] },
+    { problem: problems[1], value: valueItems[0] },
+    { problem: problems[2], value: valueItems[1] },
+    { problem: problems[3], value: valueItems[2] },
+  ]
+
+  const scrollRail = (direction: 'left' | 'right') => {
+    const rail = railRef.current
+
+    if (!rail) {
+      return
+    }
+
+    const distance = Math.max(rail.clientWidth * 0.72, 280)
+    rail.scrollBy({ left: direction === 'left' ? -distance : distance, behavior: 'smooth' })
+  }
+
+  const handleWheel = (event: WheelEvent<HTMLDivElement>) => {
+    const rail = railRef.current
+
+    if (!rail || Math.abs(event.deltaY) <= Math.abs(event.deltaX)) {
+      return
+    }
+
+    rail.scrollLeft += event.deltaY
+    event.preventDefault()
+  }
+
   return (
-    <section className="bg-gradient-to-b from-[#067bc2]/5 via-white to-white px-4 py-16 md:px-8" id="our-value">
-      <div className="mx-auto w-full max-w-6xl">
+    <section className="bg-gradient-to-b from-[#067bc2]/5 via-white to-white px-4 py-14 md:px-8 md:py-16" id="our-value">
+      <div className="mx-auto w-full max-w-[1280px]">
         <Reveal>
           <SectionTitle
             eyebrow="Our Value"
             title="Why trips break, and what TripuLike helps you arrange"
-            subtitle="See the problem on one side and the service-driven solution on the other, all in one easy-to-scan section."
+            subtitle="See each problem and its TripuLike value side by side in a horizontal browsing flow."
           />
         </Reveal>
 
-        <div className="grid gap-6 lg:grid-cols-2">
-          <Reveal>
-            <div className="h-full rounded-[2rem] border border-[#067bc2]/15 bg-white p-6 shadow-lg shadow-[#067bc2]/8 md:p-7">
-              <div className="mb-5 flex items-center gap-3">
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-orange-500/10 text-xl text-orange-500">
-                  ⚠️
-                </span>
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-orange-500">Why trips break</p>
-                  <h3 className="text-2xl font-semibold text-[#055f95] md:text-3xl">The problem we solve</h3>
-                </div>
-              </div>
-              <div className="grid gap-4 sm:grid-cols-2">
-                {problems.map((problem) => (
-                  <article
-                    key={problem.title}
-                    className="group overflow-hidden rounded-2xl border border-orange-500/15 bg-orange-500/5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-orange-500/15"
-                  >
-                    <div className="aspect-[16/10] overflow-hidden">
-                      <img
-                        src={problem.image}
-                        alt={problem.title}
-                        className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                      />
-                    </div>
-                    <div className="space-y-2 p-4">
-                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-orange-500">Problem</p>
-                      <h4 className="text-lg font-semibold text-[#055f95]">{problem.title}</h4>
-                      <p className="text-sm leading-relaxed text-[#067bc2]/80">{problem.text}</p>
-                    </div>
-                  </article>
-                ))}
-              </div>
+        <Reveal>
+          <div className="mb-4 flex items-center justify-between gap-4">
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-orange-500">Problem to value</p>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => scrollRail('left')}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#067bc2]/15 bg-white text-[#067bc2] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#067bc2]/5"
+                aria-label="Scroll value slides left"
+              >
+                ←
+              </button>
+              <button
+                type="button"
+                onClick={() => scrollRail('right')}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#067bc2]/15 bg-white text-[#067bc2] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#067bc2]/5"
+                aria-label="Scroll value slides right"
+              >
+                →
+              </button>
             </div>
-          </Reveal>
+          </div>
+        </Reveal>
 
-          <Reveal>
-            <div className="h-full rounded-[2rem] border border-[#067bc2]/15 bg-white p-6 shadow-lg shadow-[#067bc2]/10 md:p-7">
-              <div className="mb-5 flex items-center gap-3">
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-[#067bc2] text-xl text-white">
-                  ✨
-                </span>
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-orange-500">What you can do with TripuLike</p>
-                  <h3 className="text-2xl font-semibold text-[#055f95] md:text-3xl">The TripuLike value</h3>
-                </div>
-              </div>
-              <div className="grid gap-4 sm:grid-cols-2">
-                {valueItems.map((item) => (
-                  <article
-                    key={item.title}
-                    className="group overflow-hidden rounded-2xl border border-[#067bc2]/15 bg-[#067bc2]/5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[#067bc2]/15"
-                  >
-                    <div className="aspect-[16/10] overflow-hidden">
-                      <img
-                        src={item.image}
-                        alt={item.title}
-                        className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                      />
+        <div
+          ref={railRef}
+          onWheel={handleWheel}
+          className="-mx-4 overflow-x-auto px-4 pb-3 md:mx-0 md:px-0 tripu-scrollbar-hidden scroll-smooth"
+        >
+          <div className="flex min-w-max gap-5 pr-4 md:pr-0">
+            {slides.map((slide, index) => (
+              <article
+                key={`${slide.problem.title}-${slide.value.title}`}
+                className="w-[min(88vw,980px)] shrink-0 snap-start overflow-hidden rounded-[2rem] border border-[#067bc2]/12 bg-white shadow-lg shadow-[#067bc2]/8 md:w-[960px]"
+              >
+                <div className="grid gap-0 md:grid-cols-[1fr_auto_1fr] md:items-stretch">
+                  <article className="border-b border-[#067bc2]/12 bg-[#ff9100]/5 p-5 md:border-b-0 md:border-r md:border-[#067bc2]/12 md:p-6">
+                    <div className="flex items-center justify-between gap-4">
+                      <p className="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-orange-500">Problem</p>
+                      <span className="rounded-full bg-white px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-[#067bc2]/70">
+                        0{index + 1}
+                      </span>
                     </div>
-                    <div className="space-y-2 p-4">
-                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#067bc2]">Value</p>
-                      <h4 className="text-lg font-semibold text-[#055f95]">{item.title}</h4>
-                      <p className="text-sm leading-relaxed text-[#067bc2]/80">{item.text}</p>
+                    <div className="mt-4 overflow-hidden rounded-2xl border border-orange-500/10 bg-white shadow-sm">
+                      <div className="aspect-[16/10] overflow-hidden">
+                        <img src={slide.problem.image} alt={slide.problem.title} className="h-full w-full object-cover" />
+                      </div>
+                      <div className="space-y-2 p-4">
+                        <h5 className="text-lg font-semibold text-[#055f95]">{slide.problem.title}</h5>
+                        <p className="text-sm leading-relaxed text-[#067bc2]/75">{slide.problem.text}</p>
+                      </div>
                     </div>
                   </article>
-                ))}
-              </div>
-            </div>
-          </Reveal>
+
+                  <div className="flex items-center justify-center border-b border-[#067bc2]/12 bg-white px-5 py-4 text-2xl font-semibold text-[#067bc2] md:border-b-0 md:border-r md:border-[#067bc2]/12 md:px-4">
+                    <span className="md:hidden">↓</span>
+                    <span className="hidden md:inline-flex">→</span>
+                  </div>
+
+                  <article className="bg-[#067bc2]/5 p-5 md:p-6">
+                    <div className="flex items-center justify-between gap-4">
+                      <p className="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-[#067bc2]">TripuLike Value</p>
+                      <span className="rounded-full bg-[#067bc2] px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-white shadow-sm shadow-[#067bc2]/20">
+                        Solution
+                      </span>
+                    </div>
+                    <div className="mt-4 overflow-hidden rounded-2xl border border-[#067bc2]/15 bg-white shadow-sm shadow-[#067bc2]/8">
+                      <div className="aspect-[16/10] overflow-hidden">
+                        <img src={slide.value.image} alt={slide.value.title} className="h-full w-full object-cover" />
+                      </div>
+                      <div className="space-y-2 p-4">
+                        <h5 className="text-lg font-semibold text-[#055f95]">{slide.value.title}</h5>
+                        <p className="text-sm leading-relaxed text-[#067bc2]/80">{slide.value.text}</p>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>

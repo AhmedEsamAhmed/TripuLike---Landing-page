@@ -26,47 +26,49 @@ export function ValueSection() {
       <span className="pointer-events-none absolute left-4 top-16 text-base text-orange-500/25 animate-[tripuDrift_8.4s_ease-in-out_infinite]">📷</span>
       <span className="pointer-events-none absolute right-8 bottom-8 text-lg text-[#067bc2]/20 animate-[tripuDrift_9s_ease-in-out_infinite]">🌊</span>
 
-      <Reveal>
-        <SectionTitle
-          eyebrow="Why TripuLike"
-          title="Built to make travel planning feel organized and calm"
-          subtitle="A lightweight system for planning clearly, requesting confidently, and confirming before arrival."
-        />
-      </Reveal>
+      <div className="mx-auto w-full max-w-[1280px]">
+        <Reveal>
+          <SectionTitle
+            eyebrow="Why TripuLike"
+            title="Built to make travel planning feel organized and calm"
+            subtitle="A lightweight system for planning clearly, requesting confidently, and confirming before arrival."
+          />
+        </Reveal>
 
-      <div className="grid gap-5 lg:grid-cols-3">
-        {valueBlocks.map((item, index) => (
-          <Reveal key={item.title}>
-            <article className="group h-full overflow-hidden rounded-[1.75rem] border border-[#067bc2]/12 bg-white/86 shadow-sm shadow-[#067bc2]/6 transition-all duration-300 hover:-translate-y-1 hover:border-[#067bc2]/18 hover:shadow-md hover:shadow-[#067bc2]/10">
-              <div className="aspect-[16/11] overflow-hidden">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                />
-              </div>
-              <div className="space-y-3 p-5">
-                <div className="flex items-center justify-between gap-4">
-                  <p className="text-[0.68rem] font-semibold tracking-[0.22em] text-orange-500">0{index + 1}</p>
-                  <div className="h-px flex-1 bg-gradient-to-r from-[#067bc2]/20 to-transparent" />
+        <div className="grid gap-5 lg:grid-cols-3">
+          {valueBlocks.map((item, index) => (
+            <Reveal key={item.title}>
+              <article className="group h-full overflow-hidden rounded-[1.75rem] border border-[#067bc2]/12 bg-white/86 shadow-sm shadow-[#067bc2]/6 transition-all duration-300 hover:-translate-y-1 hover:border-[#067bc2]/18 hover:shadow-md hover:shadow-[#067bc2]/10">
+                <div className="aspect-[16/11] overflow-hidden">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                  />
                 </div>
-                <h4 className="text-lg font-semibold text-[#055f95]">{item.title}</h4>
-                <p className="text-sm leading-relaxed text-[#067bc2]/78">{item.text}</p>
-              </div>
-            </article>
-          </Reveal>
-        ))}
-      </div>
+                <div className="space-y-3 p-5">
+                  <div className="flex items-center justify-between gap-4">
+                    <p className="text-[0.68rem] font-semibold tracking-[0.22em] text-orange-500">0{index + 1}</p>
+                    <div className="h-px flex-1 bg-gradient-to-r from-[#067bc2]/20 to-transparent" />
+                  </div>
+                  <h4 className="text-lg font-semibold text-[#055f95]">{item.title}</h4>
+                  <p className="text-sm leading-relaxed text-[#067bc2]/78">{item.text}</p>
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </div>
 
-      <div className="mt-6 flex flex-wrap gap-2">
-        {['Estimate cost', 'Trusted providers', 'Clear roadmap'].map((chip) => (
-          <span
-            key={chip}
-            className="rounded-full border border-[#067bc2]/14 bg-white/70 px-3 py-1 text-xs font-semibold text-[#067bc2]"
-          >
-            {chip}
-          </span>
-        ))}
+        <div className="mt-6 flex flex-wrap gap-2">
+          {['Estimate cost', 'Trusted providers', 'Clear roadmap'].map((chip) => (
+            <span
+              key={chip}
+              className="rounded-full border border-[#067bc2]/14 bg-white/70 px-3 py-1 text-xs font-semibold text-[#067bc2]"
+            >
+              {chip}
+            </span>
+          ))}
+        </div>
       </div>
     </section>
   )

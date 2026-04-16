@@ -6,6 +6,7 @@ import { HowItWorksSection } from './sections/HowItWorksSection'
 import { ValueSection } from './sections/ValueSection'
 import { WaitlistSection } from './sections/WaitlistSection'
 import { HeroValueSection } from './sections/HeroValueSection'
+import { HighlightMarqueeStrip } from './components/HighlightMarqueeStrip'
 
 export function LandingPage() {
   const scrollTo = (sectionId: string) => {
@@ -25,8 +26,10 @@ export function LandingPage() {
         onOurValue={() => scrollTo('our-value')}
         onJoinWaitlist={() => scrollTo('waitlist')}
       />
+
+      <HighlightMarqueeStrip />
       
-      <div className="mx-auto w-full max-w-6xl">
+      <div className="mx-auto w-full max-w-[1280px] px-4 md:px-8">
         <HeroValueSection />
         <DemoSection />
         <HowItWorksSection />

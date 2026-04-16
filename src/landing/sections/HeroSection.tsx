@@ -52,7 +52,7 @@ export function HeroSection({ onHome, onTryDemo, onJoinWaitlist }: HeroSectionPr
         </span>
       ))}
 
-      <div className="mx-auto w-full max-w-7xl px-4 pb-16 pt-8 md:px-8 md:pb-24 md:pt-10">
+      <div className="mx-auto w-full max-w-[1280px] px-4 pb-16 pt-8 md:px-8 md:pb-24 md:pt-10">
         <Reveal>
           <header className="flex items-start">
             <button type="button" onClick={onHome} className="flex w-fit flex-col items-start text-left">
@@ -70,7 +70,7 @@ export function HeroSection({ onHome, onTryDemo, onJoinWaitlist }: HeroSectionPr
 
         <div className="mt-12 grid gap-10 lg:mt-14 lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)] lg:items-start lg:gap-12">
           <Reveal>
-            <div className="relative pl-0 md:pl-8">
+            <div className="relative pl-0 md:pl-8 xl:pl-10">
               <h1 className="hero-hook max-w-4xl text-left leading-none text-white">
                 <span className="block text-[clamp(1.75rem,2.2vw,2.3rem)] font-medium tracking-[-0.02em] text-white/92">
                   Plan your trip
@@ -83,7 +83,7 @@ export function HeroSection({ onHome, onTryDemo, onJoinWaitlist }: HeroSectionPr
                 </span>
               </h1>
 
-              <p className="mt-5 max-w-xl text-left text-base leading-relaxed text-white/88 md:text-lg">
+              <p className="mt-5 max-w-lg text-left text-base leading-relaxed text-white/88 md:text-lg">
                 Connect directly with local providers for activities, transport, and trusted support.
               </p>
 
@@ -148,10 +148,10 @@ export function HeroSection({ onHome, onTryDemo, onJoinWaitlist }: HeroSectionPr
             <div className="relative pt-2 lg:pt-4">
               <div className="mb-5 flex justify-end lg:pr-5">
                 <div className="tripu-coming-soon-text w-full max-w-[420px] text-center">
-                  <span className="block text-[clamp(2.5rem,5.2vw,4.95rem)] leading-[0.92] text-white">
+                  <span className="tripu-coming-soon-line tripu-coming-soon-line-1 block text-[clamp(2.5rem,5.2vw,4.95rem)] leading-[0.92] text-white">
                     COMING
                   </span>
-                  <span className="mt-1 block text-[clamp(2.8rem,5.8vw,5.35rem)] leading-[0.9] text-white">
+                  <span className="tripu-coming-soon-line tripu-coming-soon-line-2 mt-1 block text-[clamp(2.8rem,5.8vw,5.35rem)] leading-[0.9] text-white">
                     SOON
                   </span>
                 </div>
