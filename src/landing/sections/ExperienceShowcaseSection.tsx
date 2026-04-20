@@ -21,7 +21,7 @@ const experienceCards = [
 
 export function ExperienceShowcaseSection() {
   return (
-    <section className="bg-gradient-to-b from-[#067bc2]/6 to-white px-4 py-16 md:px-8">
+    <section className="bg-gradient-to-b from-[#067bc2]/6 to-white px-4 py-12 sm:py-14 md:px-8 md:py-16">
       <div className="mx-auto w-full max-w-6xl">
         <Reveal>
           <SectionTitle
@@ -31,10 +31,10 @@ export function ExperienceShowcaseSection() {
           />
         </Reveal>
 
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid gap-3 sm:gap-4 md:gap-4 md:grid-cols-3">
           {experienceCards.map((card) => (
             <Reveal key={card.title}>
-              <article className="group overflow-hidden rounded-[1.75rem] border border-[#067bc2]/15 bg-white shadow-lg shadow-[#067bc2]/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#067bc2]/15">
+              <article className="group overflow-hidden rounded-lg border border-[#067bc2]/15 bg-white shadow-lg shadow-[#067bc2]/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#067bc2]/15 sm:rounded-xl md:rounded-[1.75rem]">
                 <div className="aspect-[4/3] overflow-hidden">
                   <img
                     src={card.image}
@@ -42,12 +42,12 @@ export function ExperienceShowcaseSection() {
                     className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                   />
                 </div>
-                <div className="space-y-2 p-5">
-                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-orange-500">
+                <div className="space-y-2 p-3.5 sm:p-4 md:space-y-2 md:p-5">
+                  <p className="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-orange-500 sm:text-xs">
                     Requestable experience
                   </p>
-                  <h3 className="text-xl font-semibold text-[#055f95]">{card.title}</h3>
-                  <p className="text-sm leading-relaxed text-[#067bc2]/80">{card.text}</p>
+                  <h3 className="text-base font-semibold text-[#055f95] sm:text-lg md:text-xl">{card.title}</h3>
+                  <p className="text-xs leading-relaxed text-[#067bc2]/80 sm:text-sm">{card.text}</p>
                 </div>
               </article>
             </Reveal>

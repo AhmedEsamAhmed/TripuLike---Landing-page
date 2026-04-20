@@ -330,3 +330,68 @@ h4 {
 .tripu-marquee-track {
   animation: tripuMarquee 28s linear infinite;
 }
+
+/* Enhanced Mobile Responsiveness */
+
+@media (max-width: 640px) {
+  /* Improve touch targets on mobile */
+  button,
+  input,
+  textarea {
+    min-height: 2.75rem;
+  }
+
+  /* Ensure adequate line height for readability */
+  p,
+  span,
+  a {
+    line-height: 1.5;
+  }
+
+  /* Responsive font scaling */
+  h1,
+  h2,
+  h3,
+  h4 {
+    line-height: 1.1;
+  }
+
+  /* Better spacing for mobile cards */
+  article {
+    border-radius: clamp(0.75rem, 2vw, 1.75rem);
+  }
+
+  /* Ensure scrollable areas don't overflow */
+  [class*="scroll"],
+  [class*="overflow"] {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Tablet optimization (768px to 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* Reduce padding slightly on tablet */
+  section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Optimize container widths */
+  .max-w-\[1280px\] {
+    max-width: 95%;
+  }
+}
+
+/* Large desktop optimization (1440px and above) */
+@media (min-width: 1440px) {
+  /* Increase breathing space on large screens */
+  section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  /* Slightly larger text for better readability at distance */
+  body {
+    font-size: 1.05rem;
+  }
+}

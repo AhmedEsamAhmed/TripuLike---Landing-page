@@ -21,10 +21,10 @@ const valueBlocks = [
 
 export function ValueSection() {
   return (
-    <section className="relative overflow-hidden bg-gray-50/70 px-4 py-16 md:px-8" id="value">
-      <div className="tripu-dots pointer-events-none absolute right-4 top-10 h-24 w-24 opacity-30" />
-      <span className="pointer-events-none absolute left-4 top-16 text-base text-orange-500/25 animate-[tripuDrift_8.4s_ease-in-out_infinite]">📷</span>
-      <span className="pointer-events-none absolute right-8 bottom-8 text-lg text-[#067bc2]/20 animate-[tripuDrift_9s_ease-in-out_infinite]">🌊</span>
+    <section className="relative overflow-hidden bg-gray-50/70 px-4 py-12 sm:py-14 md:px-8 md:py-16" id="value">
+      <div className="tripu-dots pointer-events-none absolute right-2 top-8 h-20 w-20 opacity-25 sm:right-4 sm:top-10 sm:h-24 sm:w-24 md:opacity-30" />
+      <span className="pointer-events-none absolute left-3 top-14 text-sm text-orange-500/25 animate-[tripuDrift_8.4s_ease-in-out_infinite] sm:left-4 sm:text-base">📷</span>
+      <span className="pointer-events-none absolute right-6 -bottom-2 text-base text-[#067bc2]/20 animate-[tripuDrift_9s_ease-in-out_infinite] sm:bottom-8 sm:text-lg">🌊</span>
 
       <div className="mx-auto w-full max-w-[1280px]">
         <Reveal>
@@ -35,10 +35,10 @@ export function ValueSection() {
           />
         </Reveal>
 
-        <div className="grid gap-5 lg:grid-cols-3">
+        <div className="grid gap-3 sm:gap-4 md:gap-5 lg:grid-cols-3">
           {valueBlocks.map((item, index) => (
             <Reveal key={item.title}>
-              <article className="group h-full overflow-hidden rounded-[1.75rem] border border-[#067bc2]/12 bg-white/86 shadow-sm shadow-[#067bc2]/6 transition-all duration-300 hover:-translate-y-1 hover:border-[#067bc2]/18 hover:shadow-md hover:shadow-[#067bc2]/10">
+              <article className="group h-full overflow-hidden rounded-[1.3rem] border border-[#067bc2]/12 bg-white/86 shadow-sm shadow-[#067bc2]/6 transition-all duration-300 hover:-translate-y-1 hover:border-[#067bc2]/18 hover:shadow-md hover:shadow-[#067bc2]/10 sm:rounded-[1.5rem] md:rounded-[1.75rem]">
                 <div className="aspect-[16/11] overflow-hidden">
                   <img
                     src={item.image}
@@ -46,24 +46,24 @@ export function ValueSection() {
                     className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                   />
                 </div>
-                <div className="space-y-3 p-5">
-                  <div className="flex items-center justify-between gap-4">
-                    <p className="text-[0.68rem] font-semibold tracking-[0.22em] text-orange-500">0{index + 1}</p>
+                <div className="space-y-2.5 p-4 sm:p-5 md:space-y-3 md:p-5">
+                  <div className="flex items-center justify-between gap-3 sm:gap-4">
+                    <p className="text-[0.65rem] font-semibold tracking-[0.22em] text-orange-500 sm:text-[0.68rem]">0{index + 1}</p>
                     <div className="h-px flex-1 bg-gradient-to-r from-[#067bc2]/20 to-transparent" />
                   </div>
-                  <h4 className="text-lg font-semibold text-[#055f95]">{item.title}</h4>
-                  <p className="text-sm leading-relaxed text-[#067bc2]/78">{item.text}</p>
+                  <h4 className="text-base font-semibold text-[#055f95] sm:text-lg">{item.title}</h4>
+                  <p className="text-xs leading-relaxed text-[#067bc2]/78 sm:text-sm">{item.text}</p>
                 </div>
               </article>
             </Reveal>
           ))}
         </div>
 
-        <div className="mt-6 flex flex-wrap gap-2">
+        <div className="mt-4 flex flex-wrap gap-1.5 sm:mt-5 sm:gap-2 md:mt-6">
           {['Estimate cost', 'Trusted providers', 'Clear roadmap'].map((chip) => (
             <span
               key={chip}
-              className="rounded-full border border-[#067bc2]/14 bg-white/70 px-3 py-1 text-xs font-semibold text-[#067bc2]"
+              className="rounded-full border border-[#067bc2]/14 bg-white/70 px-2.5 py-1 text-[0.7rem] font-semibold text-[#067bc2] sm:px-3 sm:py-1 sm:text-xs"
             >
               {chip}
             </span>

@@ -77,10 +77,10 @@ export function DemoSection() {
   }
 
   return (
-    <section className="relative overflow-hidden px-4 py-16 md:px-8" id="demo">
-      <div className="tripu-dots pointer-events-none absolute -right-10 top-6 h-28 w-28 opacity-35" />
-      <span className="pointer-events-none absolute left-3 top-10 text-lg text-[#067bc2]/20 animate-[tripuDrift_9s_ease-in-out_infinite]">✈️</span>
-      <span className="pointer-events-none absolute right-8 bottom-10 text-lg text-orange-500/25 animate-[tripuDrift_8.2s_ease-in-out_infinite]">⌁</span>
+    <section className="relative overflow-hidden px-4 py-12 sm:py-14 md:px-8 md:py-16" id="demo">
+      <div className="tripu-dots pointer-events-none absolute -right-8 top-4 h-24 w-24 opacity-30 sm:-right-10 sm:top-6 sm:h-28 sm:w-28 md:opacity-35" />
+      <span className="pointer-events-none absolute left-2 top-8 text-base text-[#067bc2]/20 animate-[tripuDrift_9s_ease-in-out_infinite] sm:left-3 sm:text-lg">✈️</span>
+      <span className="pointer-events-none absolute right-6 -bottom-2 text-base text-orange-500/25 animate-[tripuDrift_8.2s_ease-in-out_infinite] sm:bottom-10 sm:text-lg">⌁</span>
 
       <div className="mx-auto w-full max-w-[1280px]">
         <Reveal>
@@ -91,13 +91,13 @@ export function DemoSection() {
           />
         </Reveal>
         <Reveal>
-          <div className="mb-4 flex items-center justify-between gap-4">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-orange-500">Browse services</p>
-            <div className="flex items-center gap-2">
+          <div className="mb-3 flex items-center justify-between gap-3 sm:mb-4 md:mb-4">
+            <p className="text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-orange-500 sm:text-sm">Browse services</p>
+            <div className="flex items-center gap-1 sm:gap-2">
               <button
                 type="button"
                 onClick={() => scrollRail('left')}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#067bc2]/15 bg-white text-[#067bc2] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#067bc2]/5"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#067bc2]/15 bg-white text-[#067bc2] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#067bc2]/5 sm:h-10 sm:w-10"
                 aria-label="Scroll services left"
               >
                 ←
@@ -105,7 +105,7 @@ export function DemoSection() {
               <button
                 type="button"
                 onClick={() => scrollRail('right')}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#067bc2]/15 bg-white text-[#067bc2] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#067bc2]/5"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#067bc2]/15 bg-white text-[#067bc2] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#067bc2]/5 sm:h-10 sm:w-10"
                 aria-label="Scroll services right"
               >
                 →
@@ -117,12 +117,12 @@ export function DemoSection() {
         <Reveal>
           <div
             ref={railRef}
-            className="tripu-scrollbar-hidden flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-2 pr-1"
+            className="tripu-scrollbar-hidden flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-smooth pb-2 pr-1 sm:gap-4 md:gap-5"
           >
             {previewCards.map((card) => (
               <article
                 key={`${card.label}-${card.title}`}
-                className="group w-[min(82vw,360px)] shrink-0 snap-start overflow-hidden rounded-[1.9rem] border border-[#067bc2]/12 bg-white shadow-lg shadow-[#067bc2]/8 transition-transform duration-300 hover:-translate-y-1 md:w-[340px]"
+                className="group w-[min(85vw,340px)] shrink-0 snap-start overflow-hidden rounded-[1.1rem] border border-[#067bc2]/12 bg-white shadow-lg shadow-[#067bc2]/8 transition-transform duration-300 hover:-translate-y-1 sm:rounded-[1.4rem] md:w-[340px] md:rounded-[1.9rem]"
               >
                 <div className="aspect-[16/11] overflow-hidden">
                   <img
@@ -131,13 +131,13 @@ export function DemoSection() {
                     className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                   />
                 </div>
-                <div className="space-y-3 p-5">
-                  <div className="flex items-center justify-between gap-4">
-                    <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-orange-500">{card.label}</p>
-                    <span className="text-xl text-[#067bc2]">{card.icon}</span>
+                <div className="space-y-2 p-4 sm:space-y-2.5 sm:p-5 md:space-y-3 md:p-5">
+                  <div className="flex items-center justify-between gap-3 sm:gap-4">
+                    <p className="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-orange-500 sm:text-[0.68rem]">{card.label}</p>
+                    <span className="text-lg text-[#067bc2] sm:text-xl">{card.icon}</span>
                   </div>
-                  <h4 className="text-lg font-semibold text-[#055f95]">{card.title}</h4>
-                  <p className="text-sm leading-relaxed text-[#067bc2]/80">{card.text}</p>
+                  <h4 className="text-base font-semibold text-[#055f95] sm:text-lg">{card.title}</h4>
+                  <p className="text-xs leading-relaxed text-[#067bc2]/80 sm:text-sm">{card.text}</p>
                 </div>
               </article>
             ))}
@@ -145,7 +145,7 @@ export function DemoSection() {
         </Reveal>
 
         <Reveal>
-          <div className="mt-8">
+          <div className="mt-6 sm:mt-8 md:mt-8">
             <InteractiveDemo />
           </div>
         </Reveal>

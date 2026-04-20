@@ -87,7 +87,7 @@ export function HeroValueSection() {
   }
 
   return (
-    <section className="bg-gradient-to-b from-[#067bc2]/5 via-white to-white px-4 py-14 md:px-8 md:py-16" id="our-value">
+    <section className="bg-gradient-to-b from-[#067bc2]/5 via-white to-white px-4 py-12 sm:py-14 md:px-8 md:py-16" id="our-value">
       <div className="mx-auto w-full max-w-[1280px]">
         <Reveal>
           <SectionTitle
@@ -98,13 +98,13 @@ export function HeroValueSection() {
         </Reveal>
 
         <Reveal>
-          <div className="mb-4 flex items-center justify-between gap-4">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-orange-500">Problem to value</p>
-            <div className="flex items-center gap-2">
+          <div className="mb-3 flex items-center justify-between gap-3 sm:mb-4 md:mb-4">
+            <p className="text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-orange-500 sm:text-sm">Problem to value</p>
+            <div className="flex items-center gap-1 sm:gap-2">
               <button
                 type="button"
                 onClick={() => scrollRail('left')}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#067bc2]/15 bg-white text-[#067bc2] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#067bc2]/5"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#067bc2]/15 bg-white text-[#067bc2] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#067bc2]/5 sm:h-10 sm:w-10"
                 aria-label="Scroll value slides left"
               >
                 ←
@@ -112,7 +112,7 @@ export function HeroValueSection() {
               <button
                 type="button"
                 onClick={() => scrollRail('right')}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#067bc2]/15 bg-white text-[#067bc2] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#067bc2]/5"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#067bc2]/15 bg-white text-[#067bc2] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#067bc2]/5 sm:h-10 sm:w-10"
                 aria-label="Scroll value slides right"
               >
                 →
@@ -124,52 +124,52 @@ export function HeroValueSection() {
         <div
           ref={railRef}
           onWheel={handleWheel}
-          className="-mx-4 overflow-x-auto px-4 pb-3 md:mx-0 md:px-0 tripu-scrollbar-hidden scroll-smooth"
+          className="-mx-4 overflow-x-auto px-4 pb-2 sm:pb-3 md:mx-0 md:px-0 tripu-scrollbar-hidden scroll-smooth"
         >
-          <div className="flex min-w-max gap-5 pr-4 md:pr-0">
+          <div className="flex min-w-max gap-3 pr-3 sm:gap-4 sm:pr-4 md:gap-5 md:pr-0">
             {slides.map((slide, index) => (
               <article
                 key={`${slide.problem.title}-${slide.value.title}`}
-                className="w-[min(88vw,980px)] shrink-0 snap-start overflow-hidden rounded-[2rem] border border-[#067bc2]/12 bg-white shadow-lg shadow-[#067bc2]/8 md:w-[960px]"
+                className="w-[min(90vw,920px)] shrink-0 snap-start overflow-hidden rounded-[1.3rem] border border-[#067bc2]/12 bg-white shadow-lg shadow-[#067bc2]/8 sm:rounded-[1.6rem] md:w-[960px] md:rounded-[2rem]"
               >
                 <div className="grid gap-0 md:grid-cols-[1fr_auto_1fr] md:items-stretch">
-                  <article className="border-b border-[#067bc2]/12 bg-[#ff9100]/5 p-5 md:border-b-0 md:border-r md:border-[#067bc2]/12 md:p-6">
-                    <div className="flex items-center justify-between gap-4">
-                      <p className="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-orange-500">Problem</p>
-                      <span className="rounded-full bg-white px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-[#067bc2]/70">
+                  <article className="border-b border-[#067bc2]/12 bg-[#ff9100]/5 p-3 sm:p-4 md:border-b-0 md:border-r md:border-[#067bc2]/12 md:p-6">
+                    <div className="flex items-center justify-between gap-3 sm:gap-4">
+                      <p className="text-[0.6rem] font-semibold uppercase tracking-[0.22em] text-orange-500 sm:text-[0.65rem]">Problem</p>
+                      <span className="rounded-full bg-white px-2 py-0.5 text-[0.6rem] font-semibold uppercase tracking-[0.22em] text-[#067bc2]/70 sm:px-3 sm:py-1 sm:text-[0.65rem]">
                         0{index + 1}
                       </span>
                     </div>
-                    <div className="mt-4 overflow-hidden rounded-2xl border border-orange-500/10 bg-white shadow-sm">
+                    <div className="mt-3 overflow-hidden rounded-lg border border-orange-500/10 bg-white shadow-sm sm:mt-4 sm:rounded-2xl">
                       <div className="aspect-[16/10] overflow-hidden">
                         <img src={slide.problem.image} alt={slide.problem.title} className="h-full w-full object-cover" />
                       </div>
-                      <div className="space-y-2 p-4">
-                        <h5 className="text-lg font-semibold text-[#055f95]">{slide.problem.title}</h5>
-                        <p className="text-sm leading-relaxed text-[#067bc2]/75">{slide.problem.text}</p>
+                      <div className="space-y-1.5 p-3 sm:space-y-2 sm:p-4">
+                        <h5 className="text-base font-semibold text-[#055f95] sm:text-lg">{slide.problem.title}</h5>
+                        <p className="text-xs leading-relaxed text-[#067bc2]/75 sm:text-sm">{slide.problem.text}</p>
                       </div>
                     </div>
                   </article>
 
-                  <div className="flex items-center justify-center border-b border-[#067bc2]/12 bg-white px-5 py-4 text-2xl font-semibold text-[#067bc2] md:border-b-0 md:border-r md:border-[#067bc2]/12 md:px-4">
+                  <div className="flex items-center justify-center border-b border-[#067bc2]/12 bg-white px-3 py-3 text-lg font-semibold text-[#067bc2] sm:px-4 sm:py-4 sm:text-2xl md:border-b-0 md:border-r md:border-[#067bc2]/12 md:px-4">
                     <span className="md:hidden">↓</span>
                     <span className="hidden md:inline-flex">→</span>
                   </div>
 
-                  <article className="bg-[#067bc2]/5 p-5 md:p-6">
-                    <div className="flex items-center justify-between gap-4">
-                      <p className="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-[#067bc2]">TripuLike Value</p>
-                      <span className="rounded-full bg-[#067bc2] px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-white shadow-sm shadow-[#067bc2]/20">
+                  <article className="bg-[#067bc2]/5 p-3 sm:p-4 md:p-6">
+                    <div className="flex items-center justify-between gap-3 sm:gap-4">
+                      <p className="text-[0.6rem] font-semibold uppercase tracking-[0.22em] text-[#067bc2] sm:text-[0.65rem]">TripuLike Value</p>
+                      <span className="rounded-full bg-[#067bc2] px-2 py-0.5 text-[0.6rem] font-semibold uppercase tracking-[0.22em] text-white shadow-sm shadow-[#067bc2]/20 sm:px-3 sm:py-1 sm:text-[0.65rem]">
                         Solution
                       </span>
                     </div>
-                    <div className="mt-4 overflow-hidden rounded-2xl border border-[#067bc2]/15 bg-white shadow-sm shadow-[#067bc2]/8">
+                    <div className="mt-3 overflow-hidden rounded-lg border border-[#067bc2]/15 bg-white shadow-sm shadow-[#067bc2]/8 sm:mt-4 sm:rounded-2xl">
                       <div className="aspect-[16/10] overflow-hidden">
                         <img src={slide.value.image} alt={slide.value.title} className="h-full w-full object-cover" />
                       </div>
-                      <div className="space-y-2 p-4">
-                        <h5 className="text-lg font-semibold text-[#055f95]">{slide.value.title}</h5>
-                        <p className="text-sm leading-relaxed text-[#067bc2]/80">{slide.value.text}</p>
+                      <div className="space-y-1.5 p-3 sm:space-y-2 sm:p-4">
+                        <h5 className="text-base font-semibold text-[#055f95] sm:text-lg">{slide.value.title}</h5>
+                        <p className="text-xs leading-relaxed text-[#067bc2]/80 sm:text-sm">{slide.value.text}</p>
                       </div>
                     </div>
                   </article>
