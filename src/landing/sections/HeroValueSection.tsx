@@ -1,89 +1,49 @@
-import { useRef } from 'react'
-import type { WheelEvent } from 'react'
+import { useState } from 'react'
 import { Reveal } from '../components/Reveal'
 import { SectionTitle } from '../components/SectionTitle'
 
-const problems = [
+const problemValuePairs = [
   {
-    title: 'Not sure what to arrange first',
-    text: 'Travelers often miss key services before departure and scramble on arrival.',
-    image: 'https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=900&q=80',
+    problem: 'No clear plan before the trip',
+    value: 'Build your trip with a clear guided structure',
+    problemAccent: 'Planning gap',
+    valueAccent: 'Guided planning',
   },
   {
-    title: 'No clear planning structure',
-    text: 'Activities, transport, and timing are hard to organize into one smooth plan.',
-    image: 'https://images.unsplash.com/photo-1488085061387-422e29b40080?auto=format&fit=crop&w=900&q=80',
+    problem: 'Services and booking feel disconnected',
+    value: 'Request and arrange services in one flow',
+    problemAccent: 'Disconnected flow',
+    valueAccent: 'Unified flow',
   },
   {
-    title: 'Unclear pricing before arrival',
-    text: 'Without early offers, costs stay vague and the budget becomes hard to control.',
-    image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=900&q=80',
+    problem: 'Prices are unclear until arrival',
+    value: 'Get estimated cost before your trip',
+    problemAccent: 'Unclear pricing',
+    valueAccent: 'Early estimates',
   },
   {
-    title: 'Low trust in providers',
-    text: 'Choosing guides, drivers, or operators is stressful when reliability is unclear.',
-    image: 'https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&w=900&q=80',
-  },
-]
-
-const valueItems = [
-  {
-    title: 'Request a tour guide',
-    text: 'Connect with local guides for sightseeing, culture, and route support.',
-    image: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=900&q=80',
+    problem: 'Hard to trust local providers',
+    value: 'Connect with trusted local service providers',
+    problemAccent: 'Trust friction',
+    valueAccent: 'Trusted network',
   },
   {
-    title: 'Request activities',
-    text: 'Arrange snorkeling, island trips, water adventures, and day experiences.',
-    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80',
-  },
-  {
-    title: 'Arrange transport easily',
-    text: 'Book airport transfer and daily driver service based on your plan.',
-    image: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=900&q=80',
-  },
-  {
-    title: 'Get a full trip roadmap',
-    text: 'Estimate costs, compare offers, and confirm services before you arrive.',
-    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=900&q=80',
+    problem: 'Too many things to arrange manually',
+    value: 'Get one roadmap for what you plan to do',
+    problemAccent: 'Manual overload',
+    valueAccent: 'Single roadmap',
   },
 ]
-
-type PairedSlide = {
-  problem: (typeof problems)[number]
-  value: (typeof valueItems)[number]
-}
 
 export function HeroValueSection() {
-  const railRef = useRef<HTMLDivElement | null>(null)
+  const [flippedCards, setFlippedCards] = useState<boolean[]>(
+    () => problemValuePairs.map(() => false),
+  )
 
-  const slides: PairedSlide[] = [
-    { problem: problems[0], value: valueItems[3] },
-    { problem: problems[1], value: valueItems[0] },
-    { problem: problems[2], value: valueItems[1] },
-    { problem: problems[3], value: valueItems[2] },
-  ]
-
-  const scrollRail = (direction: 'left' | 'right') => {
-    const rail = railRef.current
-
-    if (!rail) {
-      return
-    }
-
-    const distance = Math.max(rail.clientWidth * 0.72, 280)
-    rail.scrollBy({ left: direction === 'left' ? -distance : distance, behavior: 'smooth' })
-  }
-
-  const handleWheel = (event: WheelEvent<HTMLDivElement>) => {
-    const rail = railRef.current
-
-    if (!rail || Math.abs(event.deltaY) <= Math.abs(event.deltaX)) {
-      return
-    }
-
-    rail.scrollLeft += event.deltaY
-    event.preventDefault()
+  const toggleCard = (cardIndex: number) => {
+    setFlippedCards((previous) =>
+      previous.map((isFlipped, index) => (index === cardIndex ? !isFlipped : isFlipped)),
+    )
   }
 
   return (
@@ -93,90 +53,69 @@ export function HeroValueSection() {
           <SectionTitle
             eyebrow="Our Value"
             title="Why trips break, and what TripuLike helps you arrange"
-            subtitle="See each problem and its TripuLike value side by side in a horizontal browsing flow."
+            subtitle="Tap or click each card to flip from the traveler problem to the TripuLike value."
           />
         </Reveal>
 
         <Reveal>
-          <div className="mb-3 flex items-center justify-between gap-3 sm:mb-4 md:mb-4">
-            <p className="text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-orange-500 sm:text-sm">Problem to value</p>
-            <div className="flex items-center gap-1 sm:gap-2">
-              <button
-                type="button"
-                onClick={() => scrollRail('left')}
-                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#067bc2]/15 bg-white text-[#067bc2] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#067bc2]/5 sm:h-10 sm:w-10"
-                aria-label="Scroll value slides left"
-              >
-                ←
-              </button>
-              <button
-                type="button"
-                onClick={() => scrollRail('right')}
-                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#067bc2]/15 bg-white text-[#067bc2] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#067bc2]/5 sm:h-10 sm:w-10"
-                aria-label="Scroll value slides right"
-              >
-                →
-              </button>
-            </div>
+          <div className="mb-4 flex items-center justify-between gap-3 sm:mb-5 md:mb-6">
+            <p className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-orange-500 sm:text-xs">Problem to value</p>
+            <p className="text-[0.68rem] text-[#067bc2]/75 sm:text-xs">Flip card</p>
           </div>
         </Reveal>
 
-        <div
-          ref={railRef}
-          onWheel={handleWheel}
-          className="-mx-4 overflow-x-auto px-4 pb-2 sm:pb-3 md:mx-0 md:px-0 tripu-scrollbar-hidden scroll-smooth"
-        >
-          <div className="flex min-w-max gap-3 pr-3 sm:gap-4 sm:pr-4 md:gap-5 md:pr-0">
-            {slides.map((slide, index) => (
-              <article
-                key={`${slide.problem.title}-${slide.value.title}`}
-                className="w-[min(90vw,920px)] shrink-0 snap-start overflow-hidden rounded-[1.3rem] border border-[#067bc2]/12 bg-white shadow-lg shadow-[#067bc2]/8 sm:rounded-[1.6rem] md:w-[960px] md:rounded-[2rem]"
+        <div className="grid gap-3 sm:gap-4 md:grid-cols-2 md:gap-5 xl:grid-cols-3">
+          {problemValuePairs.map((pair, index) => (
+            <article key={`${pair.problem}-${pair.value}`} className="[perspective:1400px]">
+              <button
+                type="button"
+                onClick={() => toggleCard(index)}
+                className="group relative block h-[220px] w-full rounded-[1.1rem] text-left outline-none sm:h-[230px] sm:rounded-[1.25rem] md:h-[240px] md:rounded-[1.35rem]"
+                aria-pressed={flippedCards[index]}
+                aria-label={`Flip card ${index + 1} to view ${flippedCards[index] ? 'problem' : 'solution'}`}
               >
-                <div className="grid gap-0 md:grid-cols-[1fr_auto_1fr] md:items-stretch">
-                  <article className="border-b border-[#067bc2]/12 bg-[#ff9100]/5 p-3 sm:p-4 md:border-b-0 md:border-r md:border-[#067bc2]/12 md:p-6">
-                    <div className="flex items-center justify-between gap-3 sm:gap-4">
-                      <p className="text-[0.6rem] font-semibold uppercase tracking-[0.22em] text-orange-500 sm:text-[0.65rem]">Problem</p>
-                      <span className="rounded-full bg-white px-2 py-0.5 text-[0.6rem] font-semibold uppercase tracking-[0.22em] text-[#067bc2]/70 sm:px-3 sm:py-1 sm:text-[0.65rem]">
-                        0{index + 1}
+                <div
+                  className={`relative h-full w-full rounded-[1.1rem] transition-transform duration-500 ease-[cubic-bezier(0.2,0.75,0.2,1)] [transform-style:preserve-3d] group-hover:-translate-y-1 group-hover:shadow-xl group-hover:shadow-[#067bc2]/15 sm:rounded-[1.25rem] md:rounded-[1.35rem] ${
+                    flippedCards[index] ? '[transform:rotateY(180deg)]' : ''
+                  }`}
+                >
+                  <div className="absolute inset-0 flex h-full flex-col justify-between rounded-[1.1rem] border border-orange-500/20 bg-white p-4 shadow-lg shadow-[#067bc2]/8 [backface-visibility:hidden] sm:rounded-[1.25rem] sm:p-5 md:rounded-[1.35rem]">
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="rounded-full bg-[#ff9100]/10 px-2 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-orange-500 sm:text-[0.66rem]">
+                        Problem
+                      </span>
+                      <span className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-[#067bc2]/55">
+                        {pair.problemAccent}
                       </span>
                     </div>
-                    <div className="mt-3 overflow-hidden rounded-lg border border-orange-500/10 bg-white shadow-sm sm:mt-4 sm:rounded-2xl">
-                      <div className="aspect-[16/10] overflow-hidden">
-                        <img src={slide.problem.image} alt={slide.problem.title} className="h-full w-full object-cover" />
-                      </div>
-                      <div className="space-y-1.5 p-3 sm:space-y-2 sm:p-4">
-                        <h5 className="text-base font-semibold text-[#055f95] sm:text-lg">{slide.problem.title}</h5>
-                        <p className="text-xs leading-relaxed text-[#067bc2]/75 sm:text-sm">{slide.problem.text}</p>
-                      </div>
-                    </div>
-                  </article>
-
-                  <div className="flex items-center justify-center border-b border-[#067bc2]/12 bg-white px-3 py-3 text-lg font-semibold text-[#067bc2] sm:px-4 sm:py-4 sm:text-2xl md:border-b-0 md:border-r md:border-[#067bc2]/12 md:px-4">
-                    <span className="md:hidden">↓</span>
-                    <span className="hidden md:inline-flex">→</span>
+                    <p className="line-clamp-2 text-[1.02rem] font-semibold leading-tight text-[#055f95] sm:text-[1.08rem]">
+                      {pair.problem}
+                    </p>
+                    <p className="text-[0.68rem] font-medium uppercase tracking-[0.16em] text-[#067bc2]/65 sm:text-[0.7rem]">
+                      Tap to reveal value
+                    </p>
                   </div>
 
-                  <article className="bg-[#067bc2]/5 p-3 sm:p-4 md:p-6">
-                    <div className="flex items-center justify-between gap-3 sm:gap-4">
-                      <p className="text-[0.6rem] font-semibold uppercase tracking-[0.22em] text-[#067bc2] sm:text-[0.65rem]">TripuLike Value</p>
-                      <span className="rounded-full bg-[#067bc2] px-2 py-0.5 text-[0.6rem] font-semibold uppercase tracking-[0.22em] text-white shadow-sm shadow-[#067bc2]/20 sm:px-3 sm:py-1 sm:text-[0.65rem]">
-                        Solution
+                  <div className="absolute inset-0 flex h-full flex-col justify-between rounded-[1.1rem] border border-[#067bc2]/20 bg-gradient-to-br from-white via-[#067bc2]/[0.03] to-[#067bc2]/10 p-4 shadow-xl shadow-[#067bc2]/12 [backface-visibility:hidden] [transform:rotateY(180deg)] sm:rounded-[1.25rem] sm:p-5 md:rounded-[1.35rem]">
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="rounded-full bg-[#067bc2] px-2 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-white sm:text-[0.66rem]">
+                        TripuLike Value
+                      </span>
+                      <span className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-[#067bc2]">
+                        {pair.valueAccent}
                       </span>
                     </div>
-                    <div className="mt-3 overflow-hidden rounded-lg border border-[#067bc2]/15 bg-white shadow-sm shadow-[#067bc2]/8 sm:mt-4 sm:rounded-2xl">
-                      <div className="aspect-[16/10] overflow-hidden">
-                        <img src={slide.value.image} alt={slide.value.title} className="h-full w-full object-cover" />
-                      </div>
-                      <div className="space-y-1.5 p-3 sm:space-y-2 sm:p-4">
-                        <h5 className="text-base font-semibold text-[#055f95] sm:text-lg">{slide.value.title}</h5>
-                        <p className="text-xs leading-relaxed text-[#067bc2]/80 sm:text-sm">{slide.value.text}</p>
-                      </div>
-                    </div>
-                  </article>
+                    <p className="line-clamp-2 text-[1.02rem] font-semibold leading-tight text-[#055f95] sm:text-[1.08rem]">
+                      {pair.value}
+                    </p>
+                    <p className="text-[0.68rem] font-medium uppercase tracking-[0.16em] text-[#067bc2]/65 sm:text-[0.7rem]">
+                      Tap to see problem
+                    </p>
+                  </div>
                 </div>
-              </article>
-            ))}
-          </div>
+              </button>
+            </article>
+          ))}
         </div>
       </div>
     </section>

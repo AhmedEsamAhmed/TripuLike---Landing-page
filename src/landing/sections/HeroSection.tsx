@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Reveal } from '../components/Reveal'
-import decorationImage from '../../assets/decoration pic - tripulike.jpg'
+import decorationImage from '../../assets/deoration pic .png'
 import tripulikeLogo from '../../assets/logo (2).png'
 import { trackAnalyticsEvent } from '../../services/analyticsService'
 import { submitHeroResponse } from '../../services/heroService'
@@ -98,7 +98,7 @@ export function HeroSection({ sessionId, onHome, onTryDemo, onJoinWaitlist, onCo
         </div>
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-[1240px] px-4 pb-8 pt-5 sm:pb-10 sm:pt-6 md:px-8 md:pb-12 md:pt-7 lg:pb-14 lg:pt-8">
+      <div className="relative z-10 mx-auto w-full max-w-[1200px] px-4 pb-8 pt-5 sm:pb-10 sm:pt-6 md:px-8 md:pb-12 md:pt-7 lg:pb-14 lg:pt-8">
         <Reveal>
           <header className="flex items-start">
             <button type="button" onClick={onHome} className="flex w-fit flex-col items-start text-left">
@@ -319,12 +319,12 @@ export function HeroSection({ sessionId, onHome, onTryDemo, onJoinWaitlist, onCo
                 </div>
               </div>
 
-              <div className="relative mx-auto w-full max-w-xs overflow-hidden rounded-[1.2rem] border border-white/18 bg-white/10 p-2 shadow-[0_30px_90px_rgba(2,35,72,0.35)] backdrop-blur-sm transition duration-500 hover:-translate-y-1 sm:max-w-sm md:ml-auto lg:max-w-[420px] lg:rotate-[-3deg]">
-                <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.08),transparent_35%,rgba(255,145,0,0.12))]" />
+              <div className="relative mx-auto w-full max-w-xs overflow-hidden rounded-[1.2rem] border border-white/20 bg-white/10 p-2 shadow-[0_20px_60px_rgba(0,0,0,0.4),0_0_40px_rgba(255,145,0,0.15)] backdrop-blur-sm transition duration-500 hover:-translate-y-2 hover:shadow-[0_30px_80px_rgba(0,0,0,0.45),0_0_50px_rgba(255,145,0,0.2)] sm:max-w-sm md:ml-auto lg:max-w-[400px] lg:rotate-[-2.5deg] [animation:tripuFloatingDecoration_4s_ease-in-out_infinite]">
+                <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.1),transparent_40%,rgba(255,145,0,0.1))]" />
                 <img
                   src={decorationImage}
                   alt="Travel flat lay with camera, passport, map, and accessories"
-                  className="relative h-[180px] w-full rounded-[0.85rem] object-cover object-center shadow-lg sm:h-[215px] md:h-[245px] lg:h-[285px]"
+                  className="relative h-[180px] w-full rounded-[0.85rem] object-cover object-center shadow-[inset_0_1px_3px_rgba(255,255,255,0.3),0_10px_30px_rgba(0,0,0,0.3)] sm:h-[215px] md:h-[245px] lg:h-[285px]"
                 />
 
                 <div className="relative mt-2 flex flex-wrap items-center justify-between gap-2 px-1 pb-1 sm:mt-3 sm:gap-3 sm:pb-1">
