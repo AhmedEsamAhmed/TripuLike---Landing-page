@@ -292,12 +292,32 @@ h4 {
 @keyframes tripuFloatingDecoration {
   0%,
   100% {
-    transform: translate3d(0, 0, 0) rotateZ(-2.5deg);
+    transform: translate3d(0, 0, 0) rotateZ(-1.8deg) rotateX(1deg) rotateY(-1.4deg) scale(1);
+    filter: brightness(1);
+  }
+  25% {
+    transform: translate3d(1px, -4px, 0) rotateZ(-1.2deg) rotateX(1.4deg) rotateY(0.6deg) scale(1.008);
+    filter: brightness(1.01);
+  }
+  50% {
+    transform: translate3d(0, -7px, 0) rotateZ(-0.8deg) rotateX(0.8deg) rotateY(1.4deg) scale(1.01);
+    filter: brightness(1.015);
+  }
+  75% {
+    transform: translate3d(-1px, -3px, 0) rotateZ(-1.5deg) rotateX(1.1deg) rotateY(-0.6deg) scale(1.006);
+    filter: brightness(1.008);
+  }
+}
+
+@keyframes tripuComingSoonObjectFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotateZ(-1deg);
     filter: brightness(1);
   }
   50% {
-    transform: translate3d(0, -8px, 0) rotateZ(-2.5deg);
-    filter: brightness(1.02);
+    transform: translate3d(0, -5px, 0) rotateZ(-0.45deg);
+    filter: brightness(1.015);
   }
 }
 
@@ -328,6 +348,7 @@ h4 {
       0 3px 0 rgba(5, 66, 108, 0.28),
       0 9px 16px rgba(3, 24, 50, 0.2);
   }
+
 }
 
 @keyframes tripuMarquee {
